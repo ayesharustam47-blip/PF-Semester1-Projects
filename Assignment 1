@@ -1,5 +1,4 @@
-// Program no. 1:Program no.1: 
-We have to take two arrays A and B, each of 10 integers. Write a function that tests if  every element of array A is equal to its corresponding element in B. In 
+// Program no. 1: We have to take two arrays A and B, each of 10 integers. Write a function that tests if  every element of array A is equal to its corresponding element in B. In 
 other words, the function  must check if A[1] is equal to B[1] and so forth.
 #include <iostream>
 using namespace std;
