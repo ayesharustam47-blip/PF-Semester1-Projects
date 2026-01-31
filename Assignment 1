@@ -1,0 +1,312 @@
+// Program no. 1:Program no.1: 
+We have to take two arrays A and B, each of 10 integers. Write a function that tests if  every element of array A is equal to its corresponding element in B. In 
+other words, the function  must check if A[1] is equal to B[1] and so forth.
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int SIZE = 10;
+    int A[SIZE], B[SIZE];
+
+    cout << "Check arrays element by element:\n";
+
+    for (int i = 0; i < SIZE; i++) {
+        cout << "\nEnter element " << i + 1 << " of array A: ";
+        cin >> A[i];
+        cout << "Enter element " << i + 1 << " of array B: ";
+        cin >> B[i];
+
+        // Compare immediately
+        if (A[i] == B[i]) {
+            cout << "Element " << i + 1 << " matches!\n";
+        } else {
+            cout << "Element " << i + 1 << " does NOT match (A: " << A[i] 
+                 << ", B: " << B[i] << ")\n";
+        }
+    }
+
+    cout << "\nCheck completed for all elements.\n";
+
+    return 0;
+}
+
+//program no.2:Write a function which reverses the element of an array so that the last element becomes  first, the second from the last become second and so forth. 
+The function is to reverse the  elements in place-that is. Without using another array.  
+
+#include <iostream> 
+using namespace std; 
+ 
+void reverseArray(int A[], int size) 
+{ 
+    int i = 0; 
+    int j = size - 1; 
+    int temp; 
+ 
+    while (i < j) 
+    { 
+        temp = A[i]; 
+        A[i] = A[j]; 
+        A[j] = temp; 
+ 
+        i++; 
+        j--; 
+    } 
+} 
+ 
+int main() 
+{ 
+    int A[10]; 
+ 
+    cout << "Enter 10 elements:\n"; 
+    for (int i = 0; i < 10; i++) 
+        cin >> A[i]; 
+ 
+    reverseArray(A, 10);
+   cout << "Reversed array:\n"; 
+    for (int i = 0; i < 10; i++) 
+        cout << A[i] << " "; 
+    return 0; 
+}
+
+//program no.3:Write a function that creates two dimensional matrix representing the pascal triangle. In pascal triangle each element is the sum of the element directly above 
+it and the element to the left  of the element directly above it (if any). A pascal triangle of size 7 is shown below. 
+1 
+1 1 
+1 2 1 
+1 3 3 1 
+1 4 6 4 1 
+1 5 10 10 5 1  
+1 6 15 20 15 6 1  
+In the above example, element [0][0] is set to 1. Then element [0][1] is set to the sum of element  [0][-1] + element [0][0] since there is no of index for -1, your program must recognize that you  
+are in column 0 and simplu bring down the number above the current element. The element  [1][1] then becomes the sum of element [0][0]+ element [0][1]. 
+
+#include <iostream> 
+using namespace std; 
+ 
+void pascaltriangle(int arr[][7]) 
+{ 
+    for(int i = 0; i < 7; i++) 
+    { 
+        for(int j = 0; j <= i; j++) 
+        { 
+            if(j == 0 || j == i) 
+                arr[i][j] = 1; 
+            else 
+                arr[i][j] = arr[i-1][j-1] + arr[i-1][j]; 
+ 
+            cout << arr[i][j] << " ";
+            } 
+            cout << endl; 
+} 
+} 
+int main() 
+{ 
+int arrA[7][7] = {0};   
+pascaltriangle(arrA); 
+return 0; 
+} 
+
+//Program no.4:Write a program that creates an array of 150 random integers in the range 1 to 200 and  then, using the sequential search, searches the array 200 times using randomly generated targets  
+in the same range.at the end of program, display the following statistics: 
+a. The number searches completed. 
+b. The number of successful searches. 
+c. The percentage of successful searches. 
+d. The average number of tests per search. 
+To determine the average tests per search, you must count the number of loops for each search  target .each successful search will loop between 1 and 150 times; each successful search will  
+loop exactly 150 times. The average is the sum of all the loop counts divided by the number of  searches (200).
+
+#include <iostream> 
+#include <cstdlib> 
+#include <ctime> 
+using namespace std; 
+ 
+int main() { 
+ 
+    int arr[150]; 
+    int success = 0; 
+    int totalTests = 0; 
+ 
+    srand(time(0)); 
+ 
+    for(int i = 0; i < 150; i++) { 
+        arr[i] = rand() % 200 + 1; 
+    } 
+ 
+    for(int s = 0; s < 200; s++) { 
+ 
+        int target = rand() % 200 + 1; 
+        int tests = 0; 
+        bool found = false; 
+ 
+        for(int i = 0; i < 150; i++) { 
+            tests++; 
+            if(arr[i] == target) { 
+                found = true; 
+                break; 
+            } 
+        } 
+ 
+        if(found) 
+            success++; 
+ 
+        totalTests += tests; 
+    }
+  cout << "Searches completed: 200" << endl; 
+    cout << "Successful searches: " << success << endl; 
+    cout << "Success percentage: "  
+         << (success * 100.0) / 200 << "%" << endl; 
+    cout << "Average tests per search: "  
+         << totalTests / 200.0 << endl; 
+ 
+    return 0; 
+} 
+
+//program no. 5:Write a program to keep records and perform statistical analysis for a class of students.  The class may have up to 40 students. There are five quizzes during 
+the term. Each student is  identified by a four digit student number. The program is to print the statistics for each quize. The output is in the same order as the input;  
+no sorting is needed.
+
+  #include <iostream> 
+using namespace std; 
+ 
+// Global variables 
+int studentNumbers[40];       // Student IDs 
+int quizMarks[40][5];         // Quiz scores 
+int n;                        // Number of students 
+ 
+int main() { 
+    cout << "Enter number of students (max 40): "; 
+    cin >> n; 
+ 
+    // Input student IDs and quiz marks 
+    for (int i = 0; i < n; i++) {
+ cout << "Enter student number: "; 
+        cin >> studentNumbers[i]; 
+ 
+        cout << "Enter 5 quiz marks: "; 
+        for (int j = 0; j < 5; j++) { 
+            cin >> quizMarks[i][j]; 
+        } 
+    } 
+ 
+    // Calculate statistics for each quiz 
+    for (int q = 0; q < 5; q++) { 
+        int sum = 0; 
+        int min = quizMarks[0][q]; 
+        int max = quizMarks[0][q]; 
+ 
+        for (int i = 0; i < n; i++) { 
+            int mark = quizMarks[i][q]; 
+            sum += mark; 
+            if (mark < min) min = mark; 
+            if (mark > max) max = mark; 
+        } 
+ 
+        cout << "\nQuiz " << q+1 << " statistics:" << endl; 
+        cout << "Average: " << static_cast<double>(sum) / n << endl;  // 
+Decimal average 
+        cout << "Minimum: " << min << endl; 
+        cout << "Maximum: " << max << endl; 
+    } 
+ 
+    return 0; 
+}
+
+//program no. 6:Using the data from question 5, build a two dimensional array of students. Then write a  search function that uses the sequential search to find a student in 
+the array and prints his or her  scores, average score, and grade based on an absolute scale (90% is A,80% is B, 70% is C, 60%  is D, Less than 60% is F). After each printout, give the user the 
+opportunity to continue or stop.
+
+#include <iostream> 
+using namespace std; 
+ 
+void searchStudent(int students[][5], int ids[], int n) 
+{ 
+    int searchID; 
+    cout << "\nEnter student ID to search: "; 
+    cin >> searchID; 
+ 
+    bool found = false; 
+ 
+    for (int i = 0; i < n; i++) 
+    { 
+        if (ids[i] == searchID) 
+        { 
+            found = true; 
+            int sum = 0; 
+ 
+            cout << "\nQuiz Scores: "; 
+            for (int j = 0; j < 5; j++) 
+            { 
+                cout << students[i][j] << " "; 
+                sum += students[i][j]; 
+            } 
+ 
+            
+            double percentage = (double)sum / 5; 
+ 
+ 
+            cout << "\nPercentage: " << percentage; 
+ 
+             
+            if (percentage >= 90) 
+                cout << "\nGrade: A"; 
+            else if (percentage >= 80) 
+                cout << "\nGrade: B"; 
+            else if (percentage >= 70) 
+                cout << "\nGrade: C"; 
+            else if (percentage >= 60) 
+                cout << "\nGrade: D"; 
+            else 
+                cout << "\nGrade: F"; 
+ 
+            break; 
+        } 
+    } 
+ 
+    if (!found) 
+        cout << "\nStudent not found!"; 
+} 
+ 
+int main() 
+{ 
+    int students[40][5]; 
+    int ids[40]; 
+    int n; 
+ 
+    cout << "Enter number of students: "; 
+    cin >> n; 
+ 
+    // Input data (Question 5) 
+    for (int i = 0; i < n; i++) 
+    { 
+        cout << "\nEnter student ID: "; 
+ 
+        cin >> ids[i]; 
+ 
+        cout << "Enter 5 quiz marks (out of 100): "; 
+        for (int j = 0; j < 5; j++) 
+        { 
+            cin >> students[i][j]; 
+        } 
+    } 
+ 
+    char choice = 'y'; 
+    while (choice == 'y' || choice == 'Y') 
+    { 
+        searchStudent(students, ids, n); 
+ 
+        cout << "\n\nDo you want to search again? (y/n): "; 
+        cin >> choice; 
+    } 
+ 
+    return 0; 
+}  
+ 
+ 
+ 
+
+
+
+
+
+
+
